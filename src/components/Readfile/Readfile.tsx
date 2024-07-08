@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useHandleReadFileStatus } from './ReadfileReducer';
+import { Card, Button } from 'react-bootstrap';
+import { BsXCircle } from "react-icons/bs";
 
 interface ReadJSONYAMLfileType {
     isMulipleFiles?: boolean
@@ -104,40 +106,45 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false
         resetBorderStyle();
     }
     return(<>
-        <div className="readfile-box" ref={readFileBoxRef} 
-            onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}
-        >
-            {
-                isJsonYamlFile               
-                ?
-                    <div className="drag-box">
-                        <div>
-                            Drag and drop or
+    <Card>
+        <Card.Body>
+            <Card.Title>Import API Specification</Card.Title>
+            <div className="readfile-box mt-3" ref={readFileBoxRef} 
+                onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}
+            >
+                {
+                    isJsonYamlFile               
+                    ?
+                        <div className="drag-box">
+                            <div>
+                                Drag and drop or
+                            </div>
+                            <label htmlFor='upload-api-spec'>
+                                <input id="upload-api-spec" type="file" accept="application/JSON, .yml, .yaml"></input>
+                                <span>choose your file</span>
+                            </label>
                         </div>
-                        <label htmlFor='upload-api-spec'>
-                            <input id="upload-api-spec" type="file" accept="application/JSON, .yml, .yaml"></input>
-                            <span>choose your file</span>
-                        </label>
+                    : <div>
+                        <span style={{height: "21px"}}>
+                            Allow Only YAML or JSON
+                        </span>
                     </div>
-                : <div>
-                    <span style={{height: "21px"}}>
-                        Allow Only YAML or JSON
-                    </span>
-                </div>
-            }
-            {
-                fileName !== undefined &&
-                <div className="select-file-wrapper">
-                    <div className="select-file">
-                        Selected "{fileName}"
+                }
+                {
+                    fileName !== undefined &&
+                    <div className="select-file-wrapper">
+                        <div className="select-file">
+                            Selected "{fileName}"
+                        </div>
+                        <BsXCircle className="close-icon" onClick={closeFileOnclick} />
                     </div>
-                    <div className="close-icon" onClick={closeFileOnclick}>
-                        X
-                    </div>
-                </div>
-            }
-        </div>
-        <button>Import</button>
+                }
+            </div>
+            <div className="readfile-import-btn-wrapper">
+                <Button disabled={fileName === undefined}>Import</Button>
+            </div>
+        </Card.Body>
+    </Card>
     </>)
 }
 

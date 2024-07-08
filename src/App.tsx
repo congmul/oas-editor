@@ -6,10 +6,14 @@ function App() {
 
   return (
     <>
-    <div className="read-file-wrapper">
-
-      <ReadJSONYAMLfile />
-    </div>
+      <div className="app-wrapper">
+        <div className="read-file-wrapper">
+            <ReadJSONYAMLfile />
+        </div>
+        <div>
+          Editor
+        </div>
+      </div>
     </>
   )
 }
