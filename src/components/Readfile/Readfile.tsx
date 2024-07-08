@@ -12,6 +12,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
     const readFileBoxRef = useRef<HTMLDivElement>(null);
     const [ fileName, setFileName ] = useState();
     const [ fileType, setFileType ] = useState('json');
+    const [ selectedSpec, setSelectedSpec ] = useState();
     const { isJsonYamlFile, isParsed, isOpenapi, reset, setIsJsonYamlFile, setIsParsed, setIsOpenapi } = useHandleReadFileStatus();
 
     function onDrop(event: any) {
@@ -22,7 +23,6 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
         // Check if the file extension is json or yaml or not. If not, display error message.
         if(fileKind === "file" && (fileType === "application/json" || fileType === "application/x-yaml")){
             // handle file
-            setContent(undefined)
             setIsJsonYamlFile(true);
             if(event.dataTransfer.items){
                 if(isMulipleFiles){
@@ -100,12 +100,19 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
     }
     function handleFileRead(event:any) {
         const content = event.currentTarget.result;
-        setContent(content);
+        setSelectedSpec(content);
     }
     function closeFileOnclick() {
         setFileName(undefined);
         reset(true);        
         resetBorderStyle();
+    }
+    function importOnClick() {
+        setContent(undefined);
+        setTimeout(() => {
+            setContent(selectedSpec);
+            closeFileOnclick();
+        }, 500)
     }
     return(<>
     <Card>
@@ -143,7 +150,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
                 }
             </div>
             <div className="readfile-import-btn-wrapper">
-                <Button disabled={fileName === undefined}>Import</Button>
+                <Button disabled={fileName === undefined} onClick={importOnClick}>Import</Button>
             </div>
         </Card.Body>
     </Card>
