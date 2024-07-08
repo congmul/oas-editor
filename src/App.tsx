@@ -1,10 +1,9 @@
 import './sass/index.scss';
 import ReadJSONYAMLfile from './components/Readfile/Readfile'
-import MonacoEditor from './components/MonacoEditor/MonacoEditor';
+import Editor from './components/Editor/Editor';
 import ReactSplitPane from './components/SplitPane/SplitPane';
 
 function App() {
-
 
   return (
     <>
@@ -12,12 +11,12 @@ function App() {
         <div className="read-file-wrapper">
             <ReadJSONYAMLfile />
         </div>
-        <div className="editor-wrapper">
+        <div className="editor-page-wrapper">
           <ReactSplitPane
-            size={200}
+            size={'50%'}
           >
-            <MonacoEditor />
-            <div>TEST</div>
+            <Editor />
+            <div className="p-2">OAS Specification</div>
           </ReactSplitPane>
         </div>
       </div>
