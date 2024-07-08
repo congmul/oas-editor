@@ -1,0 +1,10 @@
+@import "./normalize";
+@import "./variables";
+@import "./mixins";
+@include export-to-css-vars($colors);
+
+@import "./components/readfile";
+
+.read-file-wrapper{
+    width: 250px;
+}
