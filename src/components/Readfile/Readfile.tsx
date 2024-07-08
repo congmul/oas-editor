@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useHandleReadFileStatus } from './ReadfileReducer';
 import { Card, Button } from 'react-bootstrap';
-import { BsXCircle } from "react-icons/bs";
+import { BsXCircle, BsFileEarmark } from "react-icons/bs";
 
 interface ReadJSONYAMLfileType {
     isMulipleFiles?: boolean
@@ -108,7 +108,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false
     return(<>
     <Card>
         <Card.Body>
-            <Card.Title>Import API Specification</Card.Title>
+            <Card.Title><BsFileEarmark /> Import API Specification</Card.Title>
             <div className="readfile-box mt-3" ref={readFileBoxRef} 
                 onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}
             >

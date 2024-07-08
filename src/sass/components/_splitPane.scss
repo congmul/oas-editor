@@ -1,0 +1,33 @@
+$neutral-8:var(--neutral-8);
+
+.Resizer {
+    background-color: var(--color-background-tertiary);
+    z-index: 1;
+    &:hover{
+        transition: all 2s ease;
+    }
+    &.vertical {
+        width: 11px;
+        margin: 0 -5px;
+        padding-left: 1px;
+        border-left: 5px solid var(--neutral-01);
+        border-right: 5px solid var(--neutral-01);
+        cursor: col-resize;
+        &:hover{
+            border-left: 5px solid rgba(#AFAFAF, 0.3);
+            border-right: 5px solid rgba(#AFAFAF, 0.3);
+        }
+    }
+    &.horizontal {
+        height: 11px;
+        margin: -5px 0;
+        width: 100%;
+        border-top: 5px solid var(--neutral-01);
+        border-bottom: 5px solid var(--neutral-01);
+        cursor: row-resize;
+        &:hover{
+            border-top: 5px solid rgba(#AFAFAF, 0.3);
+            border-bottom: 5px solid rgba(#AFAFAF, 0.3);
+        }
+    }
+}

@@ -5,6 +5,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 @import "./components/readfile";
+@import "./components/splitPane";
 
 .app-wrapper{
     display: flex;
@@ -13,5 +14,9 @@
         width: 350px;
         padding: 24px;
         border-right: 1px dotted var(--color-background-border);
+    }
+    .editor-wrapper{
+        position:relative;
+        width: calc(100vw - 350px);
     }
 }
