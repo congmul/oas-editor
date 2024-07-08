@@ -3,6 +3,7 @@
 @import "./mixins";
 @include export-to-css-vars($colors);
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "swagger-ui-react/swagger-ui.css";
 
 @import "./components/readfile";
 @import "./components/splitPane";
