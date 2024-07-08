@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
+    "@stoplight/spectral-core": "^1.18.3",
+    "@stoplight/spectral-rulesets": "^1.19.1",
     "bootstrap": "^5.3.3",
     "i": "^0.3.7",
     "npm": "^10.8.1",

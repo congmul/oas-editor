@@ -3,9 +3,12 @@ import './sass/index.scss';
 import ReadJSONYAMLfile from './components/Readfile/Readfile'
 import Editor from './components/Editor/Editor';
 import ReactSplitPane from './components/SplitPane/SplitPane';
+import { SpectralLinter } from './utils/linter-scan';
 
 function App() {
   const [ content, setContent ] = useState<string | undefined>();
+  const { lintScan } = SpectralLinter();
+
   useEffect(() => {
     // Check IndexedDB to grab API Specification
     // if there is no exsiting spec.
@@ -15,6 +18,8 @@ function App() {
         "title": "my api specification"
       }
     }
+    // lintScan(JSON.stringify(initialSpec, null, 2)).then((res) => console.log(res));
+    
     setContent(JSON.stringify(initialSpec, null, 2));
   }, [])
   return (
