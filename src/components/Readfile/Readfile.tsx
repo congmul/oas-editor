@@ -5,9 +5,10 @@ import { BsXCircle, BsFileEarmark } from "react-icons/bs";
 
 interface ReadJSONYAMLfileType {
     isMulipleFiles?: boolean
+    setContent: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
-const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false}) => {
+const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleFiles = false}) => {
     const readFileBoxRef = useRef<HTMLDivElement>(null);
     const [ fileName, setFileName ] = useState();
     const [ fileType, setFileType ] = useState('json');
@@ -21,6 +22,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false
         // Check if the file extension is json or yaml or not. If not, display error message.
         if(fileKind === "file" && (fileType === "application/json" || fileType === "application/x-yaml")){
             // handle file
+            setContent(undefined)
             setIsJsonYamlFile(true);
             if(event.dataTransfer.items){
                 if(isMulipleFiles){
@@ -98,7 +100,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false
     }
     function handleFileRead(event:any) {
         const content = event.currentTarget.result;
-        console.log(content);
+        setContent(content);
     }
     function closeFileOnclick() {
         setFileName(undefined);
