@@ -98,6 +98,11 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false
         const content = event.currentTarget.result;
         console.log(content);
     }
+    function closeFileOnclick() {
+        setFileName(undefined);
+        reset(true);        
+        resetBorderStyle();
+    }
     return(<>
         <div className="readfile-box" ref={readFileBoxRef} 
             onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}
@@ -120,7 +125,19 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false
                     </span>
                 </div>
             }
+            {
+                fileName !== undefined &&
+                <div className="select-file-wrapper">
+                    <div className="select-file">
+                        Selected "{fileName}"
+                    </div>
+                    <div className="close-icon" onClick={closeFileOnclick}>
+                        X
+                    </div>
+                </div>
+            }
         </div>
+        <button>Import</button>
     </>)
 }
 
