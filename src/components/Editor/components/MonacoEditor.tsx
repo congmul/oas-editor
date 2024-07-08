@@ -8,7 +8,18 @@ const MonacoEditor:React.FC<MonacoEditorTypes> = ({ content }) => {
     return(<>
         {
             content 
-            ? <Editor height="100%" defaultLanguage="json" defaultValue={content} />
+            ? <Editor 
+                height="100%"
+                defaultLanguage="json"
+                language='json'
+                loading={<Spinner />}
+                defaultValue={content}
+                options={{
+                    wordWrap: "on",
+                    smoothScrolling: true,
+                    foldingStrategy: "indentation"
+                }}
+            />
             : <div className="d-flex align-items-center justify-content-center h-100">
                 <Spinner />
             </div>
