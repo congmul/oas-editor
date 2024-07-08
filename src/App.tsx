@@ -1,4 +1,4 @@
-import Readfile from './components/Readfile/Readfile'
+import ReadJSONYAMLfile from './components/Readfile/Readfile'
 import './sass/index.scss';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
     <div className="read-file-wrapper">
 
-      <Readfile />
+      <ReadJSONYAMLfile />
     </div>
     </>
   )

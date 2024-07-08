@@ -6,10 +6,14 @@
     height: 55px;
     background-color: var(--color-background-default);
     border: 1px dashed var(--color-background-border);
+    font-size: 0.9rem;
     .drag-box{
         display: flex;
+        justify-content: center;
+        align-items: center;
         label{
             margin-left: 5px;
+            font-weight: 700;
             &:hover{
                 cursor: pointer;
             }

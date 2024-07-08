@@ -1,14 +1,59 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { useHandleReadFileStatus } from './ReadfileReducer';
 
-interface ReadfileType {
-
+interface ReadJSONYAMLfileType {
+    isMulipleFiles?: boolean
 }
 
-const Readfile:React.FC<ReadfileType> = () => {
+const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({isMulipleFiles = false}) => {
     const readFileBoxRef = useRef<HTMLDivElement>(null);
+    const [ fileName, setFileName ] = useState();
+    const [ fileType, setFileType ] = useState('json');
+    const { isJsonYamlFile, isParsed, isOpenapi, reset, setIsJsonYamlFile, setIsParsed, setIsOpenapi } = useHandleReadFileStatus();
 
-    function onDrop() {
+    function onDrop(event: any) {
+        event.preventDefault();
+        // use dataTransfer to access dragged and dropped files 
+        const fileKind = event.dataTransfer.items[0].kind;
+        const fileType = event.dataTransfer.items[0].type;
+        // Check if the file extension is json or yaml or not. If not, display error message.
+        if(fileKind === "file" && (fileType === "application/json" || fileType === "application/x-yaml")){
+            // handle file
+            setIsJsonYamlFile(true);
+            if(event.dataTransfer.items){
+                if(isMulipleFiles){
+                    // read all files
+                    for(let i = 0; i < event.dataTransfer.items.length; i++){
+                        if(event.dataTransfer.items[i].kind === "file"){
+                            let file = event.dataTransfer.items[i].getAsFile();
+                            console.log(file);
+                        }
+                    }
+                }else{
+                    const file = event.dataTransfer.items[0].getAsFile();
+                    handleFileChosen(file);
+                }
+            }
+            // Provides a list of the files being dragged and dropped. Each file is an instance of File
+            if(isMulipleFiles && event.dataTransfer.files){
+                console.log(event.dataTransfer.files.length);
 
+            }
+        }else{
+            // handle invalid file
+            dangerBorderStyle();
+            setIsJsonYamlFile(false);
+            setFileName(undefined);
+
+            // Reset status and styles
+            setTimeout(() => {
+                reset(true);
+                resetBorderStyle();
+            }, 2000)
+        }
+
+        // Pass event to removeDragData for clean up
+        removeDragData(event);
     }
     function onDragOver(event:any) {
         event.preventDefault();
@@ -22,21 +67,61 @@ const Readfile:React.FC<ReadfileType> = () => {
             readFileBoxRef.current.style.border = "2px dashed var(--color-background-border)";
         }
     }
+    function removeDragData(event: any){ 
+        // Removing drag data
+        if(event.dataTransfer.items){
+            event.dataTransfer.items.clear();
+        }else{
+            event.dataTransfer.clearData();
+        }
+    }
+    function dangerBorderStyle() {
+        if(readFileBoxRef.current != null) {
+            readFileBoxRef.current.style.border = "2px solid var(--color-background-danger)";
+        }
+    }
+    function resetBorderStyle() {
+        if(readFileBoxRef.current != null) {
+            readFileBoxRef.current.style.border = "1px solid var(--color-background-border)";
+        }
+    }
+    function handleFileChosen(file:any) {
+        const fileReader = new FileReader();
+        fileReader.onloadend = handleFileRead;
+        if(file == null || !(file.type === "application/json" || file.type === "application/x-yaml")) return;
+        
+        file.type === "application/json" ? setFileType('json') : setFileType('yaml')
+        setFileName(file.name);
+        fileReader.readAsText(file);
+    }
+    function handleFileRead(event:any) {
+        const content = event.currentTarget.result;
+        console.log(content);
+    }
     return(<>
         <div className="readfile-box" ref={readFileBoxRef} 
             onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}
-        >            
-            <div className="drag-box">
-                <div>
-                    Drag and drop or
+        >
+            {
+                isJsonYamlFile               
+                ?
+                    <div className="drag-box">
+                        <div>
+                            Drag and drop or
+                        </div>
+                        <label htmlFor='upload-api-spec'>
+                            <input id="upload-api-spec" type="file" accept="application/JSON, .yml, .yaml"></input>
+                            <span>choose your file</span>
+                        </label>
+                    </div>
+                : <div>
+                    <span style={{height: "21px"}}>
+                        Allow Only YAML or JSON
+                    </span>
                 </div>
-                <label htmlFor='upload-api-spec'>
-                    <input id="upload-api-spec" type="file" accept="application/JSON, .yml, .yaml"></input>
-                    <span>choose your file</span>
-                </label>
-            </div>
+            }
         </div>
     </>)
 }
 
-export default Readfile;
+export default ReadJSONYAMLfile;
