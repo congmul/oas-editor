@@ -32,7 +32,27 @@
                 background-color: var(--color-background-container);             
             }
             .menu-text{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.85rem;
                 padding: 6px 16px;
+                .error-count{
+                    display: inline-block;
+                    border-radius: 50%;
+                    background-color: var(--color-text-body);
+                    color: var(--color-text-secondary);
+                    min-width: 1.25rem;
+                    min-height: 1.25rem;
+                    padding: 0px 0.4rem;
+                    margin-left: 0.4rem;
+                    &.error{
+                        background-color: var(--color-background-danger);
+                    }
+                    &.warning{
+                        background-color: var(--color-background-warning);
+                    }
+                }
             }
         }
     }

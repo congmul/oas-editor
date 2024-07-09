@@ -31,13 +31,19 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({lintErrors}) => {
                         ${selectedMenu === 'error' ? 'active' : ''}`}
                         onClick={() => setSelectedMenu('error')}
                     >
-                        <div className="menu-text">Error</div>
+                        <div className="menu-text">
+                            <span>ERROR</span>
+                            <span className={`error-count d-flex align-items-center ${warnings.length > 0 && "error"}`}>{errors.length}</span>
+                        </div>
                     </li>
                     <li className={`terminal-menu d-flex align-items-center 
                         ${selectedMenu === 'error' ? '' : 'active'}`}
                         onClick={() => setSelectedMenu('warning')}
                     >
-                        <div className="menu-text">Warning</div>
+                        <div className="menu-text">
+                            <span>WARNING</span>
+                            <span className={`error-count d-flex align-items-center ${warnings.length > 0 && "warning"}`}>{warnings.length}</span>
+                        </div>
                     </li>
                 </ul>
             </div>
