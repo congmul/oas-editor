@@ -51,6 +51,7 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({lintErrors}) => {
                                         {
                                             (selectedMenu === 'error' ? errors : warnings).map((err: any) => {
                                                 const { code, message, path, range, severity } = err;
+                                                console.log(path);
                                                 let renderedLine = range.start.line + 1;
                                                 renderedLine = renderedLine && range.start.character ? `[Ln ${renderedLine}, Col ${range.start.character}}]` : `[Ln ${renderedLine}, Col 0]`
                                                 return(

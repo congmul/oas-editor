@@ -13,7 +13,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
     const [ fileName, setFileName ] = useState();
     const [ fileType, setFileType ] = useState('json');
     const [ selectedSpec, setSelectedSpec ] = useState();
-    const { isJsonYamlFile, isParsed, isOpenapi, reset, setIsJsonYamlFile, setIsParsed, setIsOpenapi } = useHandleReadFileStatus();
+    const { isJsonYamlFile, reset, setIsJsonYamlFile } = useHandleReadFileStatus();
 
     function onDrop(event: any) {
         event.preventDefault();
@@ -51,7 +51,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
 
             // Reset status and styles
             setTimeout(() => {
-                reset(true);
+                reset();
                 resetBorderStyle();
             }, 2000)
         }
@@ -104,7 +104,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
     }
     function closeFileOnclick() {
         setFileName(undefined);
-        reset(true);        
+        reset();        
         resetBorderStyle();
     }
     function importOnClick() {
@@ -144,6 +144,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
                     <div className="select-file-wrapper">
                         <div className="select-file">
                             Selected "{fileName}"
+                            <>{console.log(fileType)}</>
                         </div>
                         <BsXCircle className="close-icon" onClick={closeFileOnclick} />
                     </div>

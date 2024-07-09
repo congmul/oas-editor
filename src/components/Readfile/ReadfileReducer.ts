@@ -44,7 +44,7 @@ export function useHandleReadFileStatus() {
     const [ state, dispatch ] = useReducer(statusReducer, statusInit);
     const { isJsonYamlFile, isParsed, isOpenapi } = state;
 
-    function reset(data: boolean) {
+    function reset() {
         dispatch({
             type: reducerAction.RESET,
             status: true
