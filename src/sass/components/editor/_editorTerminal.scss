@@ -37,24 +37,33 @@
         }
     }
     .message-box{
+        position: absolute;
+        height: calc(100% - 37px);
         ul{
+            height: 100%;
             list-style-type: none;
             padding: 0px;
-            .terminal-error-table{
-                position: relative;
-                overflow-y: auto;
+            li{
                 height: 100%;
-                color: var(--color-text-body);
-                font-size: 0.9rem;
-                svg.error{
-                    fill: var(--color-background-danger);
-                }
-                svg.warning{
-                    fill: var(--color-background-warning);
-                }
-                td:hover{
-                    cursor: pointer;
-                    background-color: var(--color-background-hover);
+                .terminal-error-table{
+                    position: relative;
+                    overflow-y: auto;
+                    height: 100%;
+                    color: var(--color-text-body);
+                    font-size: 0.9rem;
+                    table tbody{
+                        height: 100%;
+                    }
+                    svg.error{
+                        fill: var(--color-background-danger);
+                    }
+                    svg.warning{
+                        fill: var(--color-background-warning);
+                    }
+                    td:hover{
+                        cursor: pointer;
+                        background-color: var(--color-background-hover);
+                    }
                 }
             }
         }
