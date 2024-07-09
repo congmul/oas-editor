@@ -31,7 +31,7 @@ const Editor:React.FC<EditorTypes> = ({ content, setContent }) => {
             <div className="monaco-editor-wrapper">
                 <MonacoEditor editorRef={editorRef} monacoRef={monacoRef} content={content} setContent={setContent} />
             </div>
-            <EditorTerminal lintErrors={lintErrors} />
+            <EditorTerminal editorRef={editorRef} lintErrors={lintErrors} />
         </ReactSplitPane>
     </>)
 }

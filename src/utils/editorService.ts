@@ -1,5 +1,4 @@
 export function applyErrorMarkers(errors: any[] = [], editorIns:any, monacoIns:any) {
-    console.log({errors, editorIns, monacoIns})
     if(!editorIns || !monacoIns) return;
 
     const model = editorIns.getModel();

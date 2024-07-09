@@ -1,3 +1,4 @@
 import { SpectralLinter } from "./linter-scan";
 import { applyErrorMarkers } from "./editorService";
-export { SpectralLinter, applyErrorMarkers }
+import { NavigationService } from './editorNavigatorService';
+export { SpectralLinter, applyErrorMarkers, NavigationService }

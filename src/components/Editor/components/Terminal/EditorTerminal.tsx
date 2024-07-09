@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BsXCircleFill } from "react-icons/bs";
+import { NavigationService } from '../../../../utils';
 
 interface EditorTerminalType {
+    editorRef: React.MutableRefObject<undefined>
     lintErrors:any[]
 }
-const EditorTerminal:React.FC<EditorTerminalType> = ({lintErrors}) => {
+const EditorTerminal:React.FC<EditorTerminalType> = ({editorRef, lintErrors}) => {
     const menuBarRef:any = useRef();
     const [ selectedMenu, setSelectedMenu ] = useState('error');
     const [ errors, setErrors ] = useState<any[]>([]);
@@ -55,13 +57,20 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({lintErrors}) => {
                                 <table className="border-collapse w-100">
                                     <tbody>
                                         {
-                                            (selectedMenu === 'error' ? errors : warnings).map((err: any) => {
-                                                const { code, message, path, range, severity } = err;
-                                                console.log(path);
+                                            (selectedMenu === 'error' ? errors : warnings).map((err: any, index:number) => {
+                                                const { code, message, range, severity } = err;
                                                 let renderedLine = range.start.line + 1;
                                                 renderedLine = renderedLine && range.start.character ? `[Ln ${renderedLine}, Col ${range.start.character}}]` : `[Ln ${renderedLine}, Col 0]`
                                                 return(
-                                                    <tr>
+                                                    <tr key={`${code}-${index}`}
+                                                        onClick={() => {
+                                                            NavigationService.scrollToEditorLine(
+                                                                editorRef.current,
+                                                                range.start.line + 1 || 0,
+                                                                range.start.character
+                                                            )
+                                                        }}
+                                                    >
                                                         <td className="p-2 px-4">
                                                             <span className="me-2">
                                                                 {
