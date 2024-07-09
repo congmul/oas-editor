@@ -24,6 +24,8 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({editorRef, lintErrors}) =>
         })
         setErrors(tempErrors);
         setWarnings(tempWarnings);
+        // If there is no error, but there is warning, then display warning tab first.
+        tempErrors.length > 0 && !(tempWarnings.length > 0) && setSelectedMenu('warning');
     }, [lintErrors])
     return(
         <div className="terminal-tabs-wrapper" ref={menuBarRef}>
@@ -86,6 +88,16 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({editorRef, lintErrors}) =>
                                                     </tr>
                                                 )
                                             })
+                                        }
+                                        {
+                                            (selectedMenu === 'error' ? errors : warnings).length <= 0 
+                                            && <tr>
+                                                <td className="p-2 px-4">
+                                                    <span className="me-2">
+                                                        No {selectedMenu} has been detected.
+                                                    </span>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>
