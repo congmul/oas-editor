@@ -6,8 +6,10 @@ interface TooltipComponentType {
     placement?: Placement
     message: string
     children: React.ReactNode
+    isButtonStyle?: boolean
+    onClick?: () => void
 } 
-const TooltipComponent:React.FC<TooltipComponentType> = ({ message, children, placement='top' }) => {
+const TooltipComponent:React.FC<TooltipComponentType> = ({ message, children, placement='top', isButtonStyle=false, onClick }) => {
     const renderTooltip = (props:any) => (
         <Tooltip {...props}>
         {message}
@@ -20,9 +22,17 @@ const TooltipComponent:React.FC<TooltipComponentType> = ({ message, children, pl
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltip}
         >
-        <Button variant="secondary">
-            {children}
-        </Button>
+            {
+                isButtonStyle
+                ?
+                    <Button variant="secondary" onClick={onClick}>
+                        {children}
+                    </Button>
+                : 
+                    <span onClick={onClick}>
+                        {children}
+                    </span>
+            }
         </OverlayTrigger>
     );
 };
