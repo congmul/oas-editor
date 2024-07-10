@@ -1,54 +1,57 @@
-.readfile-box{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 55px;
-    background-color: var(--color-background-default);
-    border: 1px dashed var(--color-background-border);
-    font-size: 0.9rem;
-    .drag-box{
+.read-file-wrapper{
+    padding: 24px;
+    .readfile-box{
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        label{
-            margin-left: 5px;
-            font-weight: 700;
-            &:hover{
-                cursor: pointer;
-            }
-            input {
-                display: none;
-            }
-        }
-    }
-    .select-file-wrapper{
-        position: absolute;
-        background-color: var(--color-background-default);
         width: 100%;
-        height: 51px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 6px 12px;
-        .select-file{
-            font-size: 0.85rem;
-            flex: 0 0 90%;
+        height: 55px;
+        background-color: var(--color-background-default);
+        border: 1px dashed var(--color-background-border);
+        font-size: 0.9rem;
+        .drag-box{
             display: flex;
             justify-content: center;
             align-items: center;
+            label{
+                margin-left: 5px;
+                font-weight: 700;
+                &:hover{
+                    cursor: pointer;
+                }
+                input {
+                    display: none;
+                }
+            }
         }
-        .close-icon{
-            &:hover{
-                cursor: pointer;
+        .select-file-wrapper{
+            position: absolute;
+            background-color: var(--color-background-default);
+            width: 100%;
+            height: 51px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            .select-file{
+                font-size: 0.85rem;
+                flex: 0 0 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .close-icon{
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
     }
-}
-.readfile-import-btn-wrapper{
-    margin-top: 12px;
-    button {
-        width: 100%;
+    .readfile-import-btn-wrapper{
+        margin-top: 12px;
+        button {
+            width: 100%;
+        }
     }
 }

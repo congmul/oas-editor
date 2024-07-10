@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import './sass/index.scss';
-import ReadJSONYAMLfile from './components/Readfile/Readfile'
+import LeftMenu from './components/LeftMenu/LeftMenu';
 import Editor from './components/Editor/Editor';
 import ReactSplitPane from './components/SplitPane/SplitPane';
 import SwaggerUI from 'swagger-ui-react';
 import petStoreAPISpec from './assets/petstore.apispec.json';
 
+
 function App() {
   const [ content, setContent ] = useState<string | undefined>();
+  const [ leftMenuCollapse, setLeftMenuCollapse] = useState(false);
 
   useEffect(() => {
     // Check IndexedDB to grab API Specification
@@ -17,9 +19,7 @@ function App() {
   return (
     <>
       <div className="app-wrapper">
-        <div className="read-file-wrapper">
-            <ReadJSONYAMLfile setContent={setContent} />
-        </div>
+        <LeftMenu setContent={setContent} leftMenuCollapse={leftMenuCollapse} setLeftMenuCollapse={setLeftMenuCollapse} />
         <div className="editor-page-wrapper">
           <ReactSplitPane
             size={'50%'}

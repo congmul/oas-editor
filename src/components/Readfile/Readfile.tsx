@@ -114,7 +114,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
             closeFileOnclick();
         }, 500)
     }
-    return(<>
+    return(<div className="read-file-wrapper">
     <Card>
         <Card.Body>
             <Card.Title><BsFileEarmark /> Import API Specification</Card.Title>
@@ -154,7 +154,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
             </div>
         </Card.Body>
     </Card>
-    </>)
+    </div>)
 }
 
 export default ReadJSONYAMLfile;
