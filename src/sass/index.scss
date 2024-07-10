@@ -2,6 +2,7 @@
 @import "./variables";
 @import "./mixins";
 @include export-to-css-vars($colors);
+@include export-to-css-vars-dark($colors-dark);
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "swagger-ui-react/swagger-ui.css";
 
@@ -12,6 +13,10 @@
 @import "./components/header";
 @import "./components/footer";
 
+body{
+    background-color: var(--color-background-container);
+    color: var(--color-text-body);
+}
 .app-wrapper{
     display: flex;
     height: calc(100vh - 110px);
