@@ -55,7 +55,7 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({editorRef, lintErrors}) =>
                 <ul>
                     <li>
                         <div className="terminal-error-table">
-                            <div className="mt-1">
+                            <div className="mt-1 mb-3">
                                 <table className="border-collapse w-100">
                                     <tbody>
                                         {
