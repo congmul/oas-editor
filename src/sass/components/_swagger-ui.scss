@@ -1,0 +1,151 @@
+/* DARK mode color for Swagger ui => */
+.swagger-ui{
+  background-color: var(--color-background-container);
+  color: var(--color-text-body);
+  section.models h4{
+    background-color: var(--color-background-container);
+    color: var(--color-text-body);
+  }
+  section.models .model-container{
+    background-color: var(--color-background-default);
+  }
+  .topbar, .info {
+    background-color: var(--color-background-container);
+    color: var(--color-text-body);
+  }
+  /* Adjusting header colors */
+  .topbar {
+    background-color: #1e1e1e;
+  }
+  .info .title, .info .version,  .info .description {
+    color: var(--color-text-body);
+    p{
+        color: var(--color-text-body);
+    }
+  }
+  /* Adjusting the scheme and path colors */
+  .scheme-container, .opblock-tag, .opblock-summary {
+    background-color: var(--color-background-default);
+    color: var(--color-text-body);
+    p{
+        color: var(--color-text-body);
+    }
+    .opblock-summary-path-description-wrapper{
+        span, div {color: var(--color-text-body);}
+    }
+  }
+  
+  .opblock-summary {
+    background-color: var(--color-background-default);
+  }
+  
+  /* Adjusting the responses and code blocks */
+  .response-col_status, .response-col_description, .opblock-body pre, .opblock-body pre span {    
+    color: var(--color-text-body);
+  }
+  .swagger-ui.no-margin .opblock-body{
+    .opblock-description-wrapper .opblock-description .renderedMarkdown p, .opblock-section{
+        color: var(--color-text-body);
+        p{
+            color: var(--color-text-body);
+        }
+    }
+  }
+  .tab li{
+    color: var(--color-text-body);
+  }
+  .model, .model .model-title{
+    color: var(--color-text-body);
+  }
+  .prop-type{
+    color: var(--color-text-body);
+  }
+  .model .property.primitive{
+    color: var(--color-text-body);
+  }
+  .prop-format{
+    color: var(--color-text-body);
+  }
+  svg{
+    fill:#ddd;
+  }
+  /* Adjusting the parameter and response headers */
+  .parameters-col_description, .parameters-col_name, .parameters-col_in, .parameters-col_type {
+    background-color: var(--color-background-default);
+    color: var(--color-text-body);
+    p{
+        color: var(--color-text-body);
+    }
+  }
+  .info li{
+    color: var(--color-text-body);
+  }
+  /* Adjusting button colors */
+  .btn {
+    background-color: var(--color-background-default);
+    color: var(--color-text-body);
+    border: none;
+    p{
+        color: var(--color-text-body);
+    }
+  }
+  .parameter__name {
+    color: var(--color-text-body);
+  }
+  .parameter__in{
+    color: var(--color-text-body);
+  }
+  .response-col_links{
+    color: var(--color-text-body);
+  }
+  .responses-inner h4{
+    color: var(--color-text-body);
+  }
+  table thead tr th{
+    color: var(--color-text-body);
+  }
+  table .headers td{
+    color: var(--color-text-body);
+  }
+  .btn:hover {
+    background-color: var(--color-background-hover)
+  }
+  
+  /* Adjusting the dropdown menu */
+  .dropdown-menu {
+    background-color: var(--color-background-default);
+    color: var(--color-text-body);
+    p{
+        color: var(--color-text-body);
+    }
+  }
+  
+  /* Adjusting input and textarea colors */
+  input, textarea {
+    background-color: var(--color-background-default);
+    color: var(--color-text-body);
+    border: 1px solid var(--color-background-border);
+    p{
+        color: var(--color-text-body);
+    }
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: var(--color-background-hover);
+    p{
+        color: var(--color-background-hover);
+    }
+  }
+  .opblock-description-wrapper p{
+    color: var(--color-text-body);
+  }
+  /* Adjusting the model rendering */
+  .model-box {
+    background-color: var(--color-background-default);
+    color: var(--color-text-body);
+    p{
+        color: var(--color-text-body);
+    }
+  }
+    
+}

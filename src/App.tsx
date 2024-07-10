@@ -8,9 +8,7 @@ import petStoreAPISpec from './assets/petstore.apispec.json';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { useLocalStorageState } from './utils';
-import darkStyleSwaggerUI from './dark-style.module.scss';
 import { Theme } from './utils/theme.cont';
-
 
 function App() {
   const [ content, setContent ] = useState<string | undefined>();
@@ -48,8 +46,10 @@ function App() {
             size={'50%'}
           >
             <Editor content={content} setContent={setContent} currentTheme={currentTheme}/>
-            <div className={`p-2 vh-100 ${themeState === Theme.DARK && darkStyleSwaggerUI["swagger-ui"]}`}
+            <div className={`p-2 vh-100`}
              style={{overflowY: "auto"}}>
+              <>{console.log(currentTheme)}</>
+              {/* {currentTheme === Theme.DARK  && <ThemeComponent />} */}
               <SwaggerUI spec={content} />
             </div>
           </ReactSplitPane>
