@@ -1,8 +1,7 @@
 import Editor from '@monaco-editor/react';
 import Spinner from 'react-bootstrap/Spinner';
-import { SpectralLinter, applyErrorMarkers, useLocalStorageState } from '../../../utils';
+import { SpectralLinter, applyErrorMarkers } from '../../../utils';
 import { Theme, EditorThemeData } from '../../../utils/theme.cont';
-import { useState } from 'react';
 
 interface MonacoEditorTypes {
     editorRef: any
