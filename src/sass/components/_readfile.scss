@@ -1,5 +1,9 @@
 .read-file-wrapper{
     padding: 24px;
+    &.collased{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
     .readfile-box{
         position: relative;
         display: flex;

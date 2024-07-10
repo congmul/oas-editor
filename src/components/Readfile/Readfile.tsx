@@ -1,14 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { useHandleReadFileStatus } from './ReadfileReducer';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
 import { BsXCircle, BsFileEarmark } from "react-icons/bs";
+import TooltipComponent from '../Tooltip/Tooltip';
 
 interface ReadJSONYAMLfileType {
     isMulipleFiles?: boolean
     setContent: React.Dispatch<React.SetStateAction<string | undefined>>
+    closeModal?: () => void
 }
 
-const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleFiles = false}) => {
+const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleFiles = false, closeModal}) => {
     const readFileBoxRef = useRef<HTMLDivElement>(null);
     const [ fileName, setFileName ] = useState();
     const [ fileType, setFileType ] = useState('json');
@@ -112,6 +114,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
         setTimeout(() => {
             setContent(selectedSpec);
             closeFileOnclick();
+            closeModal && closeModal();
         }, 500)
     }
     return(<div className="read-file-wrapper">
@@ -157,4 +160,20 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
     </div>)
 }
 
+const ICONReadJSONYAMLfile:React.FC<{setContent: React.Dispatch<React.SetStateAction<string | undefined>>}> = ({ setContent }) => {
+    const [ show, setShow ] = useState(false);
+
+    return(<>
+        <div className="read-file-wrapper collased" onClick={() => setShow(true)}>
+            <TooltipComponent message="Import API Specification" placement='auto' isButtonStyle={true}>
+                <BsFileEarmark />
+            </TooltipComponent>
+        </div>
+        <Modal show={show} onHide={() => setShow(false)}>
+            <Modal.Body><ReadJSONYAMLfile setContent={setContent} closeModal={() => setShow(false)} /></Modal.Body>
+        </Modal>
+    </>)
+}
+
+export { ICONReadJSONYAMLfile };
 export default ReadJSONYAMLfile;
