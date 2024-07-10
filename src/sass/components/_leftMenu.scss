@@ -1,5 +1,5 @@
 .left-menu{
-    height: 100vh;
+    height: calc(100vh - 110px);
     width: 350px;
     border-right: 1px dotted var(--color-background-border);
     display: flex;

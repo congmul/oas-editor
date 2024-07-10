@@ -5,6 +5,7 @@ import Editor from './components/Editor/Editor';
 import ReactSplitPane from './components/SplitPane/SplitPane';
 import SwaggerUI from 'swagger-ui-react';
 import petStoreAPISpec from './assets/petstore.apispec.json';
+import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 
@@ -29,6 +30,7 @@ function App() {
   }, [leftMenuCollapse])
   return (
     <>
+      <Header />
       <div className="app-wrapper">
         <LeftMenu setContent={setContent} leftMenuCollapse={leftMenuCollapse} setLeftMenuCollapse={setLeftMenuCollapse} />
         <div className="editor-page-wrapper" ref={rightMenuRef}>

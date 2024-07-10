@@ -9,11 +9,12 @@
 @import "./components/readfile";
 @import "./components/splitPane";
 @import "./components/editor/editor";
+@import "./components/header";
 @import "./components/footer";
 
 .app-wrapper{
     display: flex;
-    height: calc(100vh - 55px);
+    height: calc(100vh - 110px);
     .editor-page-wrapper{
         position:relative;
         width: calc(100vw - 350px);
