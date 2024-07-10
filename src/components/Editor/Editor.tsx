@@ -8,8 +8,9 @@ import { useEffect } from 'react';
 interface EditorTypes {
     content: string | undefined
     setContent: React.Dispatch<React.SetStateAction<string | undefined>>
+    currentTheme: string
 }
-const Editor:React.FC<EditorTypes> = ({ content, setContent }) => {
+const Editor:React.FC<EditorTypes> = ({ content, setContent, currentTheme }) => {
     const editorRef = useRef();
     const monacoRef = useRef();
     const { lintScan } = SpectralLinter();
@@ -29,7 +30,7 @@ const Editor:React.FC<EditorTypes> = ({ content, setContent }) => {
             size={'80%'}
         >
             <div className="monaco-editor-wrapper">
-            {content != null && <MonacoEditor editorRef={editorRef} monacoRef={monacoRef} content={content} setContent={setContent} />}
+            {content != null && <MonacoEditor editorRef={editorRef} monacoRef={monacoRef} content={content} setContent={setContent} currentTheme={currentTheme} />}
             </div>
             <EditorTerminal editorRef={editorRef} lintErrors={lintErrors} />
         </ReactSplitPane>

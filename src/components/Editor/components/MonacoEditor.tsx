@@ -1,19 +1,21 @@
 import Editor from '@monaco-editor/react';
 import Spinner from 'react-bootstrap/Spinner';
-import { SpectralLinter, applyErrorMarkers } from '../../../utils';
-import { EditorTheme, EditorThemeData } from './monaco-editor.const';
+import { SpectralLinter, applyErrorMarkers, useLocalStorageState } from '../../../utils';
+import { Theme, EditorThemeData } from '../../../utils/theme.cont';
+import { useState } from 'react';
 
 interface MonacoEditorTypes {
     editorRef: any
     monacoRef: any
     content: string | undefined
     setContent: React.Dispatch<React.SetStateAction<string | undefined>>
+    currentTheme: string
 }
-const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, content, setContent }) => {
+const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, content, setContent, currentTheme }) => {
     const { lintScan } = SpectralLinter();
     function handleEditorWillMount(monaco:any){
-        monaco.editor.defineTheme(EditorTheme.LIGHT, EditorThemeData[EditorTheme.LIGHT]);
-        monaco.editor.defineTheme(EditorTheme.DARK, EditorThemeData[EditorTheme.DARK]);
+        monaco.editor.defineTheme(Theme.LIGHT, EditorThemeData[Theme.LIGHT]);
+        monaco.editor.defineTheme(Theme.DARK, EditorThemeData[Theme.DARK]);
     }
     function handleEditorDidMount(editor:any, monaco:any) {
         editorRef.current = editor;
@@ -33,8 +35,7 @@ const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, conten
             <Editor 
                 beforeMount={handleEditorWillMount}
                 onMount={handleEditorDidMount}
-                // theme={EditorTheme.DARK}
-                theme={EditorTheme.LIGHT}
+                theme={currentTheme || 'LIGHT'}
                 height="100%"
                 defaultLanguage="json"
                 language='json'

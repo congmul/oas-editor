@@ -9,7 +9,7 @@ interface TooltipComponentType {
     isButtonStyle?: boolean
     onClick?: () => void
 } 
-const TooltipComponent:React.FC<TooltipComponentType> = ({ message, children, placement='top', isButtonStyle=false, onClick }) => {
+const TooltipComponent:React.FC<TooltipComponentType> = ({ message, children, placement='auto', isButtonStyle=false, onClick }) => {
     const renderTooltip = (props:any) => (
         <Tooltip {...props}>
         {message}
@@ -29,7 +29,7 @@ const TooltipComponent:React.FC<TooltipComponentType> = ({ message, children, pl
                         {children}
                     </Button>
                 : 
-                    <span onClick={onClick}>
+                    <span className={`${onClick != null && "hover"}`} onClick={onClick}>
                         {children}
                     </span>
             }

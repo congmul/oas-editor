@@ -7,18 +7,28 @@ import SwaggerUI from 'swagger-ui-react';
 import petStoreAPISpec from './assets/petstore.apispec.json';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import { useLocalStorageState } from './utils';
+import darkStyleSwaggerUI from './dark-style.module.scss';
+import { Theme } from './utils/theme.cont';
 
 
 function App() {
   const [ content, setContent ] = useState<string | undefined>();
   const [ leftMenuCollapse, setLeftMenuCollapse] = useState(false);
   const rightMenuRef:React.RefObject<HTMLDivElement> = useRef(null);
+  const [ themeState ] = useLocalStorageState('theme', Theme.LIGHT);
+  const bodyElRef = useRef(document.querySelector('body'));
+  const [ currentTheme, setCurrentTheme ] = useState<string>(themeState);
 
   useEffect(() => {
     // Check IndexedDB to grab API Specification
     // if there is no exsiting spec.
     setContent(JSON.stringify(petStoreAPISpec, null, 2));
   }, [])
+  useEffect(() => {
+    // Check Theme
+    bodyElRef.current?.setAttribute('data-bs-theme', currentTheme.toLowerCase());
+  }, [currentTheme])
 
   useEffect(() => {
     if(!rightMenuRef.current) return;
@@ -30,15 +40,16 @@ function App() {
   }, [leftMenuCollapse])
   return (
     <>
-      <Header />
+      <Header setCurrentTheme={setCurrentTheme} />
       <div className="app-wrapper">
         <LeftMenu setContent={setContent} leftMenuCollapse={leftMenuCollapse} setLeftMenuCollapse={setLeftMenuCollapse} />
         <div className="editor-page-wrapper" ref={rightMenuRef}>
           <ReactSplitPane
             size={'50%'}
           >
-            <Editor content={content} setContent={setContent} />
-            <div className="p-2 vh-100" style={{overflowY: "auto"}}>
+            <Editor content={content} setContent={setContent} currentTheme={currentTheme}/>
+            <div className={`p-2 vh-100 ${themeState === Theme.DARK && darkStyleSwaggerUI["swagger-ui"]}`}
+             style={{overflowY: "auto"}}>
               <SwaggerUI spec={content} />
             </div>
           </ReactSplitPane>
