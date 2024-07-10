@@ -129,7 +129,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
                                 Drag and drop or
                             </div>
                             <label htmlFor='upload-api-spec'>
-                                <input id="upload-api-spec" type="file" accept="application/JSON, .yml, .yaml"></input>
+                                <input id="upload-api-spec" type="file" accept="application/JSON, .yml, .yaml" onChange={(e:any) => handleFileChosen(e.target.files[0])}></input>
                                 <span>choose your file</span>
                             </label>
                         </div>
@@ -144,7 +144,6 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
                     <div className="select-file-wrapper">
                         <div className="select-file">
                             Selected "{fileName}"
-                            <>{console.log(fileType)}</>
                         </div>
                         <BsXCircle className="close-icon" onClick={closeFileOnclick} />
                     </div>
