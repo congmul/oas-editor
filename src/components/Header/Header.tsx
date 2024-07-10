@@ -1,8 +1,10 @@
+import { BsCodeSquare } from "react-icons/bs";
+
 const Header:React.FC = ({}) => {
     return(
         <header>
             <div className="header-wrapper">
-                <div>OpenAPI Specification editor</div>
+                <div><BsCodeSquare /> OpenAPI Specification Editor</div>
             </div>
         </header>
     )
