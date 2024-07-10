@@ -16,7 +16,7 @@ const Editor:React.FC<EditorTypes> = ({ content, setContent }) => {
     const [ lintErrors, setLintErrors ] = useState<any[]>([]);
 
     useEffect(() => {
-        content && lintScan(content).then((res:any) => {
+        content != null && lintScan(content).then((res:any) => {
             setLintErrors(res);
             applyErrorMarkers(res, editorRef.current, monacoRef.current)
         });
@@ -29,7 +29,7 @@ const Editor:React.FC<EditorTypes> = ({ content, setContent }) => {
             size={'80%'}
         >
             <div className="monaco-editor-wrapper">
-                <MonacoEditor editorRef={editorRef} monacoRef={monacoRef} content={content} setContent={setContent} />
+            {content != null && <MonacoEditor editorRef={editorRef} monacoRef={monacoRef} content={content} setContent={setContent} />}
             </div>
             <EditorTerminal editorRef={editorRef} lintErrors={lintErrors} />
         </ReactSplitPane>

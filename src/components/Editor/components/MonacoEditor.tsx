@@ -25,8 +25,7 @@ const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, conten
     }
     return(<>
         {
-            content 
-            ? <Editor 
+            <Editor 
                 onMount={handleEditorDidMount}
                 height="100%"
                 defaultLanguage="json"
@@ -38,9 +37,6 @@ const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, conten
                     foldingStrategy: "indentation"
                 }}
             />
-            : <div className="d-flex align-items-center justify-content-center h-100">
-                <Spinner />
-            </div>
         }
     </>)
 }
