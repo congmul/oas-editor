@@ -5,6 +5,7 @@ import Editor from './components/Editor/Editor';
 import ReactSplitPane from './components/SplitPane/SplitPane';
 import SwaggerUI from 'swagger-ui-react';
 import petStoreAPISpec from './assets/petstore.apispec.json';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           </ReactSplitPane>
         </div>
       </div>
+      <Footer />
     </>
   )
 }
