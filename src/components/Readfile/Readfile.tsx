@@ -96,7 +96,10 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
         fileReader.onloadend = handleFileRead;
         if(file == null || !(file.type === "application/json" || file.type === "application/x-yaml")) return;
         
-        file.type === "application/json" ? setFileType('json') : setFileType('yaml')
+        file.type === "application/json" ? setFileType('json') : setFileType('yaml');
+
+        // TODO: need to store file format globally
+        console.log(fileType);
         setFileName(file.name);
         fileReader.readAsText(file);
     }
