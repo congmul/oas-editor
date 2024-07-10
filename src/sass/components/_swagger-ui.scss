@@ -2,6 +2,28 @@
 .swagger-ui{
   background-color: var(--color-background-container);
   color: var(--color-text-body);
+  label{
+    color: var(--color-text-body);
+  }
+  .scopes h2{
+    color: var(--color-text-body);
+  }
+  .dialog-ux .modal-ux{
+    background-color: var(--color-background-container);
+    color: var(--color-text-body);
+  }
+  .dialog-ux .modal-ux-header h3{
+    color: var(--color-text-headding);
+  }
+  .dialog-ux .modal-ux-content p{
+    color: var(--color-text-body);
+  }
+  .dialog-ux .modal-ux-content h4{
+    color: var(--color-text-headding);
+  }
+  .dialog-ux .modal-ux-content input{
+    background-color: var(--color-background-default);
+  }
   section.models h4{
     background-color: var(--color-background-container);
     color: var(--color-text-body);
@@ -25,7 +47,7 @@
   }
   /* Adjusting the scheme and path colors */
   .scheme-container, .opblock-tag, .opblock-summary {
-    background-color: var(--color-background-default);
+    background-color: var(--color-background-container);
     color: var(--color-text-body);
     p{
         color: var(--color-text-body);
@@ -36,7 +58,7 @@
   }
   
   .opblock-summary {
-    background-color: var(--color-background-default);
+    background-color: var(--color-background-container);
   }
   
   /* Adjusting the responses and code blocks */
@@ -67,7 +89,7 @@
     color: var(--color-text-body);
   }
   svg{
-    fill:#ddd;
+    fill:var(--color-text-body);
   }
   /* Adjusting the parameter and response headers */
   .parameters-col_description, .parameters-col_name, .parameters-col_in, .parameters-col_type {
