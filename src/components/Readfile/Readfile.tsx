@@ -3,6 +3,7 @@ import { useHandleReadFileStatus } from './ReadfileReducer';
 import { Card, Button, Modal } from 'react-bootstrap';
 import { BsXCircle, BsFileEarmark } from "react-icons/bs";
 import TooltipComponent from '../Tooltip/Tooltip';
+import IndexedDB from '../../utils/indexedDB';
 
 interface ReadJSONYAMLfileType {
     isMulipleFiles?: boolean
@@ -16,6 +17,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
     const [ fileType, setFileType ] = useState('json');
     const [ selectedSpec, setSelectedSpec ] = useState();
     const { isJsonYamlFile, reset, setIsJsonYamlFile } = useHandleReadFileStatus();
+    const indexedDBIns = new IndexedDB('editor-db', 'editorContent', 'content');
 
     function onDrop(event: any) {
         event.preventDefault();
@@ -116,6 +118,7 @@ const ReadJSONYAMLfile:React.FC<ReadJSONYAMLfileType> = ({setContent, isMulipleF
         setContent(undefined);
         setTimeout(() => {
             setContent(selectedSpec);
+            indexedDBIns.saveContentToDB(JSON.parse(selectedSpec!));
             closeFileOnclick();
             closeModal && closeModal();
         }, 500)
