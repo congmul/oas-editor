@@ -3,6 +3,7 @@
 @import "./mixins";
 @include export-to-css-vars($colors);
 @include export-to-css-vars-dark($colors-dark);
+@import "./className";
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "swagger-ui-react/swagger-ui.css";
 

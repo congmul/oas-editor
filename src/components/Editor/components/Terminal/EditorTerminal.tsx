@@ -62,7 +62,7 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({editorRef, lintErrors}) =>
                                             (selectedMenu === 'error' ? errors : warnings).map((err: any, index:number) => {
                                                 const { code, message, range, severity } = err;
                                                 let renderedLine = range.start.line + 1;
-                                                renderedLine = renderedLine && range.start.character ? `[Ln ${renderedLine}, Col ${range.start.character}}]` : `[Ln ${renderedLine}, Col 0]`
+                                                renderedLine = renderedLine && range.start.character ? `[Ln ${renderedLine}, Col ${range.start.character}]` : `[Ln ${renderedLine}, Col 0]`
                                                 return(
                                                     <tr key={`${code}-${index}`}
                                                         onClick={() => {
@@ -82,8 +82,8 @@ const EditorTerminal:React.FC<EditorTerminalType> = ({editorRef, lintErrors}) =>
                                                                 }
                                                             </span>
                                                             <span className="me-2">{message || '-'}</span>
-                                                            <span className="me-2">{[code]}</span>
-                                                            <span className="me-2">{renderedLine || '-'}</span>
+                                                            <span className="me-2 color-text-light">[{code}]</span>
+                                                            <span className="me-2 color-text-light">{renderedLine || '-'}</span>
                                                         </td>
                                                     </tr>
                                                 )
