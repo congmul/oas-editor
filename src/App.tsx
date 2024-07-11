@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { useLocalStorageState } from './utils';
 import { Theme } from './utils/theme.cont';
+import IndexedDB from './utils/indexedDB';
 
 function App() {
   const [ content, setContent ] = useState<string | undefined>();
@@ -17,11 +18,21 @@ function App() {
   const [ themeState ] = useLocalStorageState('theme', Theme.LIGHT);
   const bodyElRef = useRef(document.querySelector('body'));
   const [ currentTheme, setCurrentTheme ] = useState<string>(themeState);
+  const indexedDBIns = new IndexedDB('editor-db', 'editorContent', 'value');
 
   useEffect(() => {
-    // Check IndexedDB to grab API Specification
-    // if there is no exsiting spec.
-    setContent(JSON.stringify(petStoreAPISpec, null, 2));
+    // Check IndexedDB to grab API Specification    
+    indexedDBIns.loadContentFromDB()
+    .then(async (res) => {
+      if(!res){
+        // if there is no exsiting spec, use pet store api spec.
+        await indexedDBIns.saveContentToDB(petStoreAPISpec);
+        setContent(JSON.stringify(petStoreAPISpec, null, 2));
+      }else{
+        // if it exists, display it on Editor.
+        setContent(JSON.stringify(res, null, 2));
+      }
+    })
   }, [])
   useEffect(() => {
     // Check Theme
@@ -48,8 +59,6 @@ function App() {
             <Editor content={content} setContent={setContent} currentTheme={currentTheme}/>
             <div className={`p-2 vh-100`}
              style={{overflowY: "auto"}}>
-              <>{console.log(currentTheme)}</>
-              {/* {currentTheme === Theme.DARK  && <ThemeComponent />} */}
               <SwaggerUI spec={content} />
             </div>
           </ReactSplitPane>

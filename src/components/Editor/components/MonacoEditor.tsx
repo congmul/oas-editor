@@ -2,6 +2,7 @@ import Editor from '@monaco-editor/react';
 import Spinner from 'react-bootstrap/Spinner';
 import { SpectralLinter, applyErrorMarkers } from '../../../utils';
 import { Theme, EditorThemeData } from '../../../utils/theme.cont';
+import IndexedDB from '../../../utils/indexedDB';
 
 interface MonacoEditorTypes {
     editorRef: any
@@ -12,6 +13,8 @@ interface MonacoEditorTypes {
 }
 const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, content, setContent, currentTheme }) => {
     const { lintScan } = SpectralLinter();
+    const indexedDBIns = new IndexedDB('editor-db', 'editorContent', 'content');
+
     function handleEditorWillMount(monaco:any){
         monaco.editor.defineTheme(Theme.LIGHT, EditorThemeData[Theme.LIGHT]);
         monaco.editor.defineTheme(Theme.DARK, EditorThemeData[Theme.DARK]);
@@ -25,9 +28,11 @@ const MonacoEditor:React.FC<MonacoEditorTypes> = ({ editorRef, monacoRef, conten
             applyErrorMarkers(res, editorRef.current, monacoRef.current)
         });
     }
-    function onChange() {
+    async function onChange() {
         const editorValue = editorRef.current?.getValue();
         setContent(editorValue);
+        // Store value into indexedDB
+        indexedDBIns.saveContentToDB(JSON.parse(editorValue))
     }
     return(<>
         {
