@@ -49,7 +49,7 @@ function App() {
   }, [leftMenuCollapse])
   return (
     <>
-      <Header setCurrentTheme={setCurrentTheme} />
+      <Header currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} />
       <div className="app-wrapper">
         <LeftMenu setContent={setContent} leftMenuCollapse={leftMenuCollapse} setLeftMenuCollapse={setLeftMenuCollapse} />
         <div className="editor-page-wrapper" ref={rightMenuRef}>
