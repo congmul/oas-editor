@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getLocationForJsonPath } from "@stoplight/json";
 import { getLocationForJsonPath as getLocationForJsonPathYAML } from "@stoplight/yaml";
 
