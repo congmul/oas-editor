@@ -57,8 +57,8 @@ function App() {
             size={'50%'}
           >
             <Editor content={content} setContent={setContent} currentTheme={currentTheme}/>
-            <div className={`p-2 vh-100`}
-             style={{overflowY: "auto"}}>
+            <div className={`p-2`}
+             style={{overflowY: "auto", height: "calc(100vh - 110px"}}>
               <SwaggerUI spec={content} />
             </div>
           </ReactSplitPane>
